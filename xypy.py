@@ -55,7 +55,7 @@ def multadd1(p,q):
 w,h = 720,1050
 cell_w = cell_h = w//12
 big_screen = pg.display.set_mode((w,h))
-pg.display.set_caption("Connect the dots!")
+pg.display.set_caption("Connect the dots! Finding points is finding products.")
 ccs = pg.Surface((w,h))
 ccs.fill(WHITE)
 pg.draw.rect(ccs,GREY,(1.5*cell_w,0,10.5*cell_w,13*cell_w-cell_w//2))
@@ -74,10 +74,10 @@ for i in range(11):
 
 """Draw X and Y axes """
 for x in range(cell_w//2,w,cell_w):
-    pg.draw.line(ccs,(0,0,0),(x,0),(x,h),2)
+    pg.draw.line(ccs,BLACK,(x,0),(x,h),2)
 pg.draw.line(ccs,BLACK,(1.5*cell_w,0),(1.5*cell_w,h),22)
 for y in range(cell_w//2,h,cell_w):
-    pg.draw.line(ccs,(0,0,0),(0,y),(w,y),2)
+    pg.draw.line(ccs,BLACK,(0,y),(w,y),2)
 pg.draw.line(ccs,BLACK,(0,13*cell_w-cell_w//2),(w,13*cell_w-cell_w//2),22)
 
 """Draw dotsies at intersection points"""
@@ -127,7 +127,7 @@ for point in points:
 for point in locs:
     print(point)
 
-big_screen.fill((255,255,255))
+big_screen.fill(WHITE)
 while True:
     clock.tick(FPS)
     
@@ -137,6 +137,6 @@ while True:
             sys.exit()
     
     big_screen.blit(ccs,(0,0))
-    #pg.draw.polygon(big_screen,(150,150,0),locs,14)
-    pg.draw.lines(big_screen,1,(150,150,0),locs,14)
+    pg.draw.polygon(big_screen,RED,locs,0)
+    #pg.draw.lines(big_screen,RED,1,locs,14)
     pg.display.flip()
